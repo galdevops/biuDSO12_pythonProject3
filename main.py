@@ -3,6 +3,8 @@ import csv
 from bs4 import BeautifulSoup
 import requests
 
+
+# get movies data from imdb
 def fetch_data():
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:97.0) Gecko/20100101 Firefox/97.0",
@@ -19,6 +21,7 @@ def fetch_data():
     return structured_data
 
 
+# process movie details
 def process_data(data):
     movies_list = []
 
@@ -46,7 +49,7 @@ def process_data(data):
     return movies_list
 
 
-
+# save processed data into csv file
 def save_data(data):
     movies_file = open('movies_list.csv', 'w')
     writer = csv.writer(movies_file)
@@ -54,6 +57,7 @@ def save_data(data):
     for item in data:
         writer.writerow(item.values())
     movies_file.close()
+    print('Movies CSV file generated. Task completed.')
 
 
 fetch_and_process_movies = fetch_data()
